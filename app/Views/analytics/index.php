@@ -11,9 +11,8 @@ body {
     background: #fff;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
-
 </style>
 
 <h2 class="mb-4">Members Performance Analytics</h2>
@@ -23,9 +22,9 @@ body {
     <div class="col-md-3">
         <select id="filterYear" class="form-select">
             <?php for ($y = 2022; $y <= date('Y'); $y++): ?>
-                <option value="<?= $y ?>" <?= ($year == $y) ? 'selected' : '' ?>>
-                    <?= $y ?>
-                </option>
+            <option value="<?= $y ?>" <?= ($year == $y) ? 'selected' : '' ?>>
+                <?= $y ?>
+            </option>
             <?php endfor; ?>
         </select>
     </div>
@@ -34,9 +33,9 @@ body {
         <select id="filterMonth" class="form-select">
             <option value="all" <?= ($month=='all')?'selected':'' ?>>All Months</option>
             <?php for ($m = 1; $m <= 12; $m++): ?>
-                <option value="<?= $m ?>" <?= ($month == $m) ? 'selected' : '' ?>>
-                    <?= date('F', mktime(0,0,0,$m,1)) ?>
-                </option>
+            <option value="<?= $m ?>" <?= ($month == $m) ? 'selected' : '' ?>>
+                <?= date('F', mktime(0,0,0,$m,1)) ?>
+            </option>
             <?php endfor; ?>
         </select>
     </div>
@@ -51,21 +50,20 @@ document.getElementById("filterYear").addEventListener("change", applyFilter);
 document.getElementById("filterMonth").addEventListener("change", applyFilter);
 
 function applyFilter() {
-    const year  = document.getElementById("filterYear").value;
+    const year = document.getElementById("filterYear").value;
     const month = document.getElementById("filterMonth").value;
     window.location.href = `/analytics?year=${year}&month=${month}`;
 }
 
 const names = [
-<?php foreach ($performance as $p): ?>
-    "<?= $p['name'] ?>",
-<?php endforeach; ?>
+    <?php foreach ($performance as $p): ?> "<?= $p['name'] ?>",
+    <?php endforeach; ?>
 ];
 
 const values = [
-<?php foreach ($performance as $p): ?>
+    <?php foreach ($performance as $p): ?>
     <?= round($p['performance'] / 86400, 2) ?>,
-<?php endforeach; ?>
+    <?php endforeach; ?>
 ];
 
 // Stable colors
