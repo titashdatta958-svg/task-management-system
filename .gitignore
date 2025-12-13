@@ -1,0 +1,7 @@
+/vendor/
+.env
+.env.local
+.env.production
+/writable/*
+!writable/.htaccess
+node_modules/
